@@ -5,6 +5,10 @@ from game_framework import Game
 class GameParams:
     width = 640
     height = 480 
+    balloon_max_height = 15
+    balloon_min_height = 120
+    bullet_y_speed = 5
+    revenge_brick_y_speed = 15
     keypress_events = [ (pygame.K_LEFT, 'left_keypress'), 
                        (pygame.K_RIGHT, 'right_keypress'),
                        (pygame.K_SPACE, 'space_keypress')]
