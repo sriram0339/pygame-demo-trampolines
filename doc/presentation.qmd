@@ -1,0 +1,22 @@
+---
+title: "Functional Programming Principles for Game Design"
+author: Sriram Sankaranarayanan
+format: revealjs
+theme: dark 
+---
+
+## Game Design 
+
+ * Why is it interesting?
+:::{.incremental}
+ * What makes game design challenging?
+   + Graphics (ignore).
+   + Interactive, surprising and engaging. 
+ * Why do we bother with designing games?
+   + Designing games for improving professional skills?
+:::
+
+
+## Example Game 
+
+
