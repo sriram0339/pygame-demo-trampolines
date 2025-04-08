@@ -2,13 +2,14 @@
 title: "Functional Programming Principles for Game Design"
 author: Sriram Sankaranarayanan
 format: revealjs
-theme: dark 
 ---
+# Overview 
 
 ## Game Design 
 
- * Why is it interesting?
 :::{.incremental}
+
+ * Why is it interesting?
  * What makes game design challenging?
    + Graphics (ignore).
    + Interactive, surprising and engaging. 
@@ -19,4 +20,104 @@ theme: dark
 
 ## Example Game 
 
+::: {.center-xy}
+Git Repository 
 
+`git clone https://github.com/sriram0339/pygame-demo-trampolines.git`
+::: 
+
+## Review 
+
+* How do we build this game? 
+
+* Graphics: pygame python package.
+  + Very simple graphics: mostly 2D shapes.
+  + Nothing very deep here.
+
+* What are the techical challenges?
+
+## Game Architecture 
+
+```{mermaid}
+%%| fig-align: center
+stateDiagram-v2 
+state "Event Loop" as s1
+state "User Inputs" as s0
+state "Timer" as s2
+state "Game Object # 1" as e1 
+state "Game Object # 2" as e2
+state "Game Object # 3" as e3 
+state "Game Object # n" as en 
+s0 --> s1 : inputs 
+s2 --> s1 : tick
+s1 --> e1 
+e1 --> s1 
+s1 --> e2
+e2 --> s1 
+s1 --> e3
+e3 --> s1
+s1 --> en
+en --> s1
+```
+## Game Main Event Loop 
+
+* Receives keyboard/joystick inputs and timer ticks.
+* External Input Actions:
+  + Update the position of paddle.
+  + Create a new bolt.
+* Timer Tick Actions: 
+  + Generate new balloons.
+  + Move the bolts and balloons.
+  + Check for collisions and handle them.
+* Remove game objects and create new game objects.
+
+## Game Framework 
+
+* Framework takes care of:
+  + Event loop.
+  + Managing external inputs.
+
+* Game developer takes care of:
+  + The game itself!
+
+## This Presentation
+
+* Functional Programming.
+
+* Use to build game framework.
+
+* Design a game. 
+
+# Functional Programming 
+
+## What is Functional Programming?
+:::{.incremental}
+a) A style of programming?
+
+b) Opposite of dis-functional programming?
+
+c) What (unemployed) programming _pundits_ blog about on LinkedIn.
+
+d) Programming for {current, future, wannabe} academic-types.
+
+e) Wierd languages like Haskell and OCaml that no one uses. 
+
+f) All of the above.
+:::
+
+## Imperative Programming 
+
+
+```python
+import random
+lst = [] 
+N = 10000
+for i in range(0, N):
+  lst.append(random.uniform(-1.0,1.0))
+sum = 0
+sq_sum = 0
+for j in lst:
+  sum = sum + j
+  sq_sum = sq_sum + j*j
+print(f' Avg: {sum/N}, Mom: {sq_sum/N}')
+```
