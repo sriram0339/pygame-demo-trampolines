@@ -13,7 +13,7 @@ class GameParams:
                         (pygame.K_s, 's_keypress')]
     g = 9.81
     m = 0.25 
-    dt = 0.05
+    dt = 0.02
     Ixx = 0.01 
     K = [-0.1, -1.0, -30.0]  # PID controller gains
     pad_x = 290
@@ -173,7 +173,7 @@ class GameStateMonitor:
     
     def on_quadrotor_position(self, game_state, pos):
         (x, y, phi, vy) = pos
-        if x >= GameParams.pad_x and x <= GameParams.pad_x + GameParams.pad_width and y >= GameParams.pad_y and y <= GameParams.pad_y - 10 and phi >= -math.pi/6 and phi <= math.pi/6:
+        if x >= GameParams.pad_x and x <= GameParams.pad_x + GameParams.pad_width and y >= GameParams.pad_y and y <= GameParams.pad_y + 10 and phi >= -math.pi/6 and phi <= math.pi/6:
             self.game_won = True
             print("Game Won")
             game_state.game_over()
@@ -205,7 +205,7 @@ class GameStateMonitor:
     
 def main():
     initial_entities = [Quadrotor(0, 0, 0, 0, 0, 0, 0, 0), GameStateMonitor(), ThrottleDisplay()]
-    game = Game(initial_entities, window_dims=(GameParams.width, GameParams.height), caption="Quadrotor Landing Game", bg_color=(255, 255, 255), time_step=10)
+    game = Game(initial_entities, window_dims=(GameParams.width, GameParams.height), caption="Quadrotor Landing Game", bg_color=(255, 255, 255), time_step=50)
     game.run(GameParams.keypress_events)
 
 if __name__ == "__main__":
