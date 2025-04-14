@@ -39,8 +39,8 @@ class Quadrotor:
         self.dphi = dphi
         self.ux = ux 
         self.uy = uy
-        self.width = 80
-        self.height = 30
+        self.width = 50
+        self.height = 20
         self.color = (0, 0, 255)  # Blue color for the quadrotor
         # load the quadrotor image file from quadrotor.png
         self.image = pygame.image.load('drone.png')
