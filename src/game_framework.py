@@ -1,10 +1,12 @@
 import pygame 
+import pygame.font 
 import random
 
 class Game:
 
     def __init__(self,  initial_entities, window_dims=(640, 480), caption="Simple Game", bg_color=(255, 255, 255), time_step=60):
         pygame.init()
+        pygame.font.init()
         (width, height) = window_dims
         self.screen = pygame.display.set_mode((width, height))
         self.screen.fill(bg_color)
@@ -46,6 +48,7 @@ class Game:
         # first run all the keypress events 
         while self.running:
             self.clock.tick(self.time_step)
+            # process external events from the keyboard 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
