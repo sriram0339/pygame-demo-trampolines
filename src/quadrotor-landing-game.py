@@ -25,6 +25,8 @@ class GameParams:
     max_ux = 0.5
     min_uy = -5
     max_uy = 5
+    quadrotor_width = 50
+    quadrotor_height = 20
 
 
 
@@ -39,8 +41,8 @@ class Quadrotor:
         self.dphi = dphi
         self.ux = ux 
         self.uy = uy
-        self.width = 50
-        self.height = 20
+        self.width = GameParams.quadrotor_width
+        self.height = GameParams.quadrotor_height
         self.color = (0, 0, 255)  # Blue color for the quadrotor
         # load the quadrotor image file from quadrotor.png
         self.image = pygame.image.load('drone.png')
@@ -50,10 +52,10 @@ class Quadrotor:
     def init(self, game_state):
         self.x = random.uniform(1/3* GameParams.width, 2/3*GameParams.width)
         self.y = random.uniform(1/6* GameParams.height, 1/3*GameParams.height)
-        self.vx = random.uniform(-1, 1)
-        self.vy = random.uniform(-1, 1)
-        self.phi = random.uniform(-math.pi/6, math.pi/6)
-        self.dphi = random.uniform(-0.01, 0.01)
+        self.vx = 0.0
+        self.vy = 0.0
+        self.phi = 0.0 # random.uniform(-math.pi/6, math.pi/6)
+        self.dphi = 0.0 # random.uniform(-0.01, 0.01)
         self.ux = 0
         self.uy = 0
         game_state.add_listener(self, 'left_keypress', self.on_left_keypress)
@@ -203,7 +205,7 @@ class GameStateMonitor:
     
 def main():
     initial_entities = [Quadrotor(0, 0, 0, 0, 0, 0, 0, 0), GameStateMonitor(), ThrottleDisplay()]
-    game = Game(initial_entities, window_dims=(GameParams.width, GameParams.height), caption="Quadrotor Landing Game", bg_color=(255, 255, 255), time_step=20)
+    game = Game(initial_entities, window_dims=(GameParams.width, GameParams.height), caption="Quadrotor Landing Game", bg_color=(255, 255, 255), time_step=10)
     game.run(GameParams.keypress_events)
 
 if __name__ == "__main__":
